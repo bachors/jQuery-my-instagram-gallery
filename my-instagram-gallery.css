@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/css?family=Nixie+One);
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Nixie One', sans-serif;
+}
+
+a {
+	color: #000;
+	font-weight: bold;
+}
+
+.bcr_ins_profile {
+	padding-top: 10px;
+	border: 1px solid #f1f1f1;
+	display: block;
+	margin: 0 0 20px 0;
+	overflow: hidden;
+	*overflow: visible;
+	text-align: center;
+}
+
+.ins_pr_img {
+	border-radius: 50%;
+}
+
+.bcr_ins_profile p {
+	margin: 0 0 5px 0;
+}
+
+p.ins_username {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.bcr_ins_gallery {
+	display: block;
+	overflow: hidden;
+	*overflow: visible;
+	text-align: center;
+	margin: 0;
+}
+
+.ins_img {
+	display: inline;
+	margin: 0;
+}
+
+.ins_img a img {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+} 
+	
+.ins_img a:hover img {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.load_more {
+	text-align: center;
+}
+
+.btn {
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	padding: 15px 20px 15px 20px;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
+	transition: border .25s linear,color .25s linear,background-color .25s linear
+}
+
+.btn:hover {
+	background-color: #fff;
+}
+
+.ins_more {
+	background-color: rgba(212,212,212,.5);
+	color: #34495e
+	border-color: #F04F3D;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
+}
