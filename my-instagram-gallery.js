@@ -1,0 +1,11 @@
+/******************************************************
+* #### jQuery My Instagram Gallery v01 ####
+* Coded by Ican Bachors 2014.
+* http://ibacor.com/labs/jquery-my-instagram-gallery/
+* Updates will be posted to this site.
+******************************************************/
+
+/* Put your instagram user_id */
+var ins_id = 503807090;
+
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('k=\'/l/O/?m=n.o.q\',r(s);6(s,k);2 6(e,f){$.t({4:\'u://v.7.8/w/x/\'+e+f,y:z,A:\'B\'}).C(2(c){9 d=\'\';$.P(c.0,2(i,a){9 b=\'Q\',D=R(c.0[i].S);d+=\'<5 1="T"><a g="\'+c.0[i].E.U.4.h(/\\\\/,"")+\'" 1="V" W="X" F="\'+D+\'"><G H="\'+c.0[i].E.Y.4.h(/\\\\/,"")+\'" F="\'+b+\'"></a></5>\'});d+=\'<p 1="I"><Z 10="11" 1="12 J" 13="14"></p>\';$(\'.15\').16(d);$(\'.J\').17(2(){6(e,f+\'&18=\'+c.19.1a);$(".I").1b("1c","1d");1e 1f})})}2 r(c){$.t({4:\'u://v.7.8/w/x/\'+c+\'/?m=n.o.q\',y:z,A:\'B\'}).C(2(a){9 b=\'\';b+=\'<5 1="1g"><G H="\'+a.0.1h.h(/\\\\/,"")+\'" 1="1i"></5>\';b+=\'<p 1="1j"><a g="1k://7.8/\'+a.0.K+\'" L="M">\'+a.0.K+\'</a></p>\';b+=\'<p>1l: \'+a.0.1m+\'</p>\';b+=\'<p>1n: \'+a.0.1o+\'</p>\';b+=\'<p>1p: <a g="\'+a.0.N+\'" L="M">\'+a.0.N+\'</a></p>\';b+=\'<p><3>\'+a.0.j.l+\'</3> 1q | <3>\'+a.0.j.1r+\'</3> 1s | <3>\'+a.0.j.1t+\'</3> 1u</p>\';$(\'.1v\').1w(b)})}',62,95,'data|class|function|strong|url|div|album|instagram|com|var|||||||href|replace||counts|sub|media|access_token|141970|467ede5||edbc9c37472d41b790e1db8948793f11|profile|ins_id|ajax|https|api|v1|users|crossDomain|true|dataType|jsonp|done|myDate|images|title|img|src|load_more|ins_more|username|target|_BLANK|website|recent|each|Zoom|Date|created_time|ins_img|standard_resolution|ins_popup|rel|ins_gallery|thumbnail|input|type|submit|btn|value|More|bcr_ins_gallery|append|click|max_id|pagination|next_max_id|css|display|none|return|false|ins_pr_user|profile_picture|ins_pr_img|ins_username|http|Name|full_name|Bio|bio|Website|posts|followed_by|followers|follows|following|bcr_ins_profile|html'.split('|'),0,{}))
