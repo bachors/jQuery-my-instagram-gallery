@@ -1,11 +1,57 @@
 /******************************************************
-* #### jQuery My Instagram Gallery v01 ####
+* #### jQuery My Instagram Gallery v02 ####
 * Coded by Ican Bachors 2014.
 * http://ibacor.com/labs/jquery-my-instagram-gallery/
 * Updates will be posted to this site.
 ******************************************************/
 
-/* Put your instagram user_id */
-var ins_id = 503807090;
+var bcr_mig = function (ins_id,ins_token) {
 
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('m=\'/n/P/?o=q.r.s\',t(u);8(u,m);2 8(e,f){$.v({4:\'w://x.5.9/y/z/\'+e+f,A:B,C:\'D\'}).E(2(c){g d=\'\';$.Q(c.0,2(i,a){g b=\'\';R(c.0[i].F==S){b=T(c.0[i].U)}V{b=c.0[i].F.W}d+=\'<6 1="X"><a h="\'+c.0[i].G.Y.4.j(/\\\\/,"")+\'" 1="Z" 10="11" k="\'+b+\'"><H I="\'+c.0[i].G.12.4.j(/\\\\/,"")+\'" J="" k="\'+b+\'"></a></6>\'});d+=\'<p 1="K"><13 14="15" 1="16 L" 17="18"></p>\';$(\'.19\').1a(d);$(\'.L\').1b(2(){8(e,f+\'&1c=\'+c.1d.1e);$(".K").1f("1g","1h");1i 1j})})}2 t(c){$.v({4:\'w://x.5.9/y/z/\'+c+\'/?o=q.r.s\',A:B,C:\'D\'}).E(2(a){g b=\'\';b+=\'<6 1="1k"><H I="\'+a.0.1l.j(/\\\\/,"")+\'" 1="1m" J="\'+a.0.7+\'" k="\'+a.0.7+\' 1n 5"></6>\';b+=\'<p 1="1o"><a h="1p://5.9/\'+a.0.7+\'" M="N">\'+a.0.7+\'</a></p>\';b+=\'<p>1q: \'+a.0.1r+\'</p>\';b+=\'<p>1s: \'+a.0.1t+\'</p>\';b+=\'<p>1u: <a h="\'+a.0.O+\'" M="N">\'+a.0.O+\'</a></p>\';b+=\'<p><3>\'+a.0.l.n+\'</3> 1v | <3>\'+a.0.l.1w+\'</3> 1x | <3>\'+a.0.l.1y+\'</3> 1z</p>\';$(\'.1A\').1B(b)})}',62,100,'data|class|function|strong|url|instagram|div|username|album|com|||||||var|href||replace|title|counts|sub|media|access_token||141970|467ede5|edbc9c37472d41b790e1db8948793f11|profile|ins_id|ajax|https|api|v1|users|crossDomain|true|dataType|jsonp|done|caption|images|img|src|alt|load_more|ins_more|target|_BLANK|website|recent|each|if|null|Date|created_time|else|text|ins_img|standard_resolution|ins_popup|rel|ins_gallery|thumbnail|input|type|submit|btn|value|More|bcr_ins_gallery|append|click|max_id|pagination|next_max_id|css|display|none|return|false|ins_pr_user|profile_picture|ins_pr_img|on|ins_username|http|Name|full_name|Bio|bio|Website|posts|followed_by|followers|follows|following|bcr_ins_profile|html'.split('|'),0,{}))
+	var sub = '/media/recent/?access_token=';
+	bcr_mig_profile(ins_id,ins_token);
+	bcr_mig_album(ins_id,sub,ins_token);
+
+	function bcr_mig_album(user_id,sub,ins_token) {
+		$.ajax({
+			url: 'https://api.instagram.com/v1/users/' + user_id + sub + ins_token,
+			crossDomain: true,
+			dataType: 'jsonp'
+		}).done(function (data) {
+			var html = '';
+			$.each(data.data, function(i, item) {
+				var title = '';
+				if(data.data[i].caption == null){
+					title = Date(data.data[i].created_time);
+				}else {
+					title = data.data[i].caption.text + ' - ' + Date(data.data[i].created_time);
+				}
+				html += '<div class="ins_img"><a href="' + data.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="ins_popup" rel="ins_gallery" title="' + title + '"><img src="' + data.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + title + '"></a></div>';
+			});
+			html += '<p class="load_more"><input type="submit" class="btn ins_more" value="More"></p>';
+			$('.bcr_ins_gallery').append(html);
+			$('.ins_more').click(function(){
+				bcr_mig_album(user_id,sub,ins_token + '&max_id=' + data.pagination.next_max_id);
+				$( ".load_more" ).css( "display", "none" );
+				return false;
+			});
+		});
+	}
+
+	function bcr_mig_profile(user_id,ins_token) {
+		$.ajax({
+			url: 'https://api.instagram.com/v1/users/' + user_id + '/?access_token=' + ins_token,
+			crossDomain: true,
+			dataType: 'jsonp'
+		}).done(function (data) {
+			var html = '';
+			html += '<div class="ins_pr_user"><img src="' + data.data.profile_picture.replace(/\\/, "") + '" class="ins_pr_img" alt="' + data.data.username + '" title="' + data.data.username + ' on instagram"></div>';
+			html += '<p class="ins_username"><a href="http://instagram.com/' + data.data.username + '" target="_BLANK">' + data.data.username + '</a></p>';
+			html += '<p>Name: ' + data.data.full_name + '</p>';
+			html += '<p>Bio: ' + data.data.bio + '</p>';
+			html += '<p>Website: <a href="' + data.data.website + '" target="_BLANK">' + data.data.website + '</a></p>';
+			html += '<p><strong>' + data.data.counts.media + '</strong> posts | <strong>' + data.data.counts.followed_by + '</strong> followers | <strong>' + data.data.counts.follows + '</strong> following</p>';
+			$('.bcr_ins_profile').html(html);
+		});
+	}
+
+}
