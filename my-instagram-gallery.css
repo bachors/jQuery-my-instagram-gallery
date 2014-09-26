@@ -81,7 +81,7 @@ p.ins_username {
 
 .ins_more {
 	background-color: rgba(212,212,212,.5);
-	color: #34495e
+	color: #34495e;
 	border-color: #F04F3D;
 	border-radius: 4px;
 	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
