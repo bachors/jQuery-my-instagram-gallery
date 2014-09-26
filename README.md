@@ -3,10 +3,14 @@ jQuery-my-instagram-gallery
 
 Create your own instagram gallery on your website
 
-<h1>Setting:</h1>
+<h1>Example Setting:</h1>
 <pre>
-// Example put your instagram user_id on my-instagram-gallery.js
-var ins_id = 503807090;
+<script>
+	bcr_mig(
+		ins_id = 503807090, // your user_id
+		ins_token = '141970.467ede5.edbc9c37472d41b790e1db8948793f11' // your token
+	);
+</script>
 </pre>
-<p><a href="http://ibacor.com/media/sosmed-user-id-finder/">Get your instagram user_id ?</a></p>
+<p><a href="http://ibacor.com/media/sosmed-user-id-finder/">Find your instagram user_id ?</a></p>
 <p><a href="http://ibacor.com/demo/jquery-my-instagram-gallery/">DEMO</a></p>
