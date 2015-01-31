@@ -21,9 +21,9 @@ var bcr_mig = function (ins_id,ins_token) {
 			$.each(data.data, function(i, item) {
 				var title = '';
 				if(data.data[i].caption == null){
-					title = Date(data.data[i].created_time);
+					title += Date(data.data[i].created_time);
 				}else {
-					title = data.data[i].caption.text + ' - ' + Date(data.data[i].created_time);
+					title += data.data[i].caption.text + ' - ' + Date(data.data[i].created_time);
 				}
 				html += '<div class="ins_img"><a href="' + data.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="ins_popup" rel="ins_gallery" title="' + title + '"><img src="' + data.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + title + '"></a></div>';
 			});
