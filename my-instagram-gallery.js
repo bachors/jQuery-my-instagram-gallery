@@ -31,7 +31,7 @@ var bcr_mig = function (ins_id,ins_token) {
 			$('.bcr_ins_gallery').append(html);
 			$('.ins_more').click(function(){
 				bcr_mig_album(user_id,sub,ins_token + '&max_id=' + data.pagination.next_max_id);
-				$( ".load_more" ).css( "display", "none" );
+				$( ".load_more" ).remove();
 				return false;
 			});
 		});
