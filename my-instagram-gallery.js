@@ -5,15 +5,15 @@
 * Updates will be posted to this site.
 ******************************************************/
 
-var bcr_mig = function (ins_id,ins_token) {
+var bcr_mig = function (ins_id,ins_count,ins_token) {
 
 	var sub = '/media/recent/?access_token=';
 	bcr_mig_profile(ins_id,ins_token);
-	bcr_mig_album(ins_id,sub,ins_token);
+	bcr_mig_album(ins_id,sub,ins_token,ins_count);
 
-	function bcr_mig_album(user_id,sub,ins_token) {
+	function bcr_mig_album(user_id,sub,ins_token,count) {
 		$.ajax({
-			url: 'https://api.instagram.com/v1/users/' + user_id + sub + ins_token,
+			url: 'https://api.instagram.com/v1/users/' + user_id + sub + ins_token + '&count=' + count,
 			crossDomain: true,
 			dataType: 'jsonp'
 		}).done(function (data) {
@@ -30,7 +30,7 @@ var bcr_mig = function (ins_id,ins_token) {
 			html += '<p class="load_more"><input type="submit" class="btn ins_more" value="More"></p>';
 			$('.bcr_ins_gallery').append(html);
 			$('.ins_more').click(function(){
-				bcr_mig_album(user_id,sub,ins_token + '&max_id=' + data.pagination.next_max_id);
+				bcr_mig_album(user_id,sub,ins_token + '&max_id=' + data.pagination.next_max_id,count);
 				$( ".load_more" ).remove();
 				return false;
 			});
