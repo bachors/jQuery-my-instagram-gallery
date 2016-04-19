@@ -1,57 +1,60 @@
 /******************************************************
-* #### jQuery My Instagram Gallery v02 ####
+* #### jQuery My Instagram Gallery v03 ####
 * Coded by Ican Bachors 2014.
 * http://ibacor.com/labs/jquery-my-instagram-gallery/
 * Updates will be posted to this site.
 ******************************************************/
 
-var bcr_mig = function (ins_id,ins_count,ins_token) {
+$.fn.myig = function(g, h, j) {
+    var k = ($(this).attr("id") != null || $(this).attr("id") != undefined ? '#' + $(this).attr("id") : '.' + $(this).attr("class"));
+    $(this).html('<div class="myig_profile"></div><div class="myig_gallery"></div>');
+    myig_profile(k);
+    myig_gallery(k, "");
 
-	var sub = '/media/recent/?access_token=';
-	bcr_mig_profile(ins_id,ins_token);
-	bcr_mig_album(ins_id,sub,ins_token,ins_count);
+    function myig_profile(c) {
+        $.ajax({
+            url: 'https://api.instagram.com/v1/users/' + g + '/?access_token=' + j,
+            crossDomain: true,
+            dataType: 'jsonp'
+        }).done(function(a) {
+            var b = '';
+            b += '<div class="user_pic">';
+            b += '	<img src="' + a.data.profile_picture.replace(/\\/, "") + '" alt="" title="' + a.data.username + ' on instagram">';
+            b += '</div>';
+            b += '<p class="user_name"><a href="http://instagram.com/' + a.data.username + '" target="_BLANK">' + a.data.username + '</a></p>';
+            b += '<p>Name: ' + a.data.full_name + '</p>';
+            b += '<p>Bio: ' + a.data.bio + '</p>';
+            b += '<p>Website: <a href="' + a.data.website + '" target="_BLANK">' + a.data.website + '</a></p>';
+            b += '<p><strong>' + a.data.counts.media + '</strong> posts | <strong>' + a.data.counts.followed_by + '</strong> followers | <strong>' + a.data.counts.follows + '</strong> following</p>';
+            $(c + ' .myig_profile').html(b)
+        })
+    }
 
-	function bcr_mig_album(user_id,sub,ins_token,count) {
-		$.ajax({
-			url: 'https://api.instagram.com/v1/users/' + user_id + sub + ins_token + '&count=' + count,
-			crossDomain: true,
-			dataType: 'jsonp'
-		}).done(function (data) {
-			var html = '';
-			$.each(data.data, function(i, item) {
-				var title = '';
-				if(data.data[i].caption == null){
-					title += Date(data.data[i].created_time);
-				}else {
-					title += data.data[i].caption.text + ' - ' + Date(data.data[i].created_time);
-				}
-				html += '<div class="ins_img"><a href="' + data.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="ins_popup" rel="ins_gallery" title="' + title + '"><img src="' + data.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + title + '"></a></div>';
-			});
-			html += '<p class="load_more"><input type="submit" class="btn ins_more" value="More"></p>';
-			$('.bcr_ins_gallery').append(html);
-			$('.ins_more').click(function(){
-				bcr_mig_album(user_id,sub,ins_token + '&max_id=' + data.pagination.next_max_id,count);
-				$( ".load_more" ).remove();
-				return false;
-			});
-		});
-	}
-
-	function bcr_mig_profile(user_id,ins_token) {
-		$.ajax({
-			url: 'https://api.instagram.com/v1/users/' + user_id + '/?access_token=' + ins_token,
-			crossDomain: true,
-			dataType: 'jsonp'
-		}).done(function (data) {
-			var html = '';
-			html += '<div class="ins_pr_user"><img src="' + data.data.profile_picture.replace(/\\/, "") + '" class="ins_pr_img" alt="' + data.data.username + '" title="' + data.data.username + ' on instagram"></div>';
-			html += '<p class="ins_username"><a href="http://instagram.com/' + data.data.username + '" target="_BLANK">' + data.data.username + '</a></p>';
-			html += '<p>Name: ' + data.data.full_name + '</p>';
-			html += '<p>Bio: ' + data.data.bio + '</p>';
-			html += '<p>Website: <a href="' + data.data.website + '" target="_BLANK">' + data.data.website + '</a></p>';
-			html += '<p><strong>' + data.data.counts.media + '</strong> posts | <strong>' + data.data.counts.followed_by + '</strong> followers | <strong>' + data.data.counts.follows + '</strong> following</p>';
-			$('.bcr_ins_profile').html(html);
-		});
-	}
-
+    function myig_gallery(e, f) {
+        $.ajax({
+            url: 'https://api.instagram.com/v1/users/' + g + '/media/recent/?access_token=' + j + '&count=' + h + '&max_id=' + f,
+            crossDomain: true,
+            dataType: 'jsonp'
+        }).done(function(c) {
+            var d = '';
+            $.each(c.data, function(i, a) {
+                var b = '';
+                b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
+                d += '<div class="user_gallery">';
+                d += '	<a href="' + c.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="myig_popup" rel="myig_popup" title="' + b + '">';
+                d += '		<img src="' + c.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + b + '">';
+                d += '	</a>';
+                d += '</div>'
+            });
+            if (c.pagination.next_max_id != null && c.pagination.next_max_id != undefined) {
+                d += '<div class="load_more"><span class="btn myig_more" data-next="' + c.pagination.next_max_id + '">MORE</span></div>'
+            }
+            $(e + ' .myig_gallery').append(d);
+            $('.myig_more').click(function() {
+                myig_gallery(e, $(this).data('next'));
+                $(e + ' .load_more').remove();
+                return false
+            })
+        })
+    }
 }
