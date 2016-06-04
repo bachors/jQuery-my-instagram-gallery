@@ -35,5 +35,8 @@ Fancybox:
         closeEffect : 'fade'
     });
 });</pre>
+<h2>New instagram API 2016</h2>
+<p>Now access token is limited to 500 requests per hour.<br>
+You can get your acces token here: http://instagramwordpress.rafsegat.com/docs/get-access-token/ this works for me.</p>
 <p><a href="http://ibacor.com/tools/social-media-user-id-finder">Find your instagram user_id ?</a></p>
 <p><a href="http://ibacor.com/demo/jquery-my-instagram-gallery/">DEMO</a></p>
