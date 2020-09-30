@@ -1,7 +1,7 @@
 jQuery-my-instagram-gallery
 ===========================
 
-Create your own instagram gallery on your website
+Best way to create your own instagram gallery on your website. 
 
 <h1>Usage:</h1>
 <h3>CSS</h3>
