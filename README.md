@@ -1,4 +1,4 @@
-jQuery-my-instagram-gallery
+jQuery-my-instagram-gallery: An Amazing projects
 ===========================
 
 Create your own instagram gallery on your website
@@ -40,3 +40,5 @@ Fancybox:
 You can get your acces token here: http://instagramwordpress.rafsegat.com/docs/get-access-token/ this works for me.</p>
 <p><a href="http://ibacor.com/tools/social-media-user-id-finder">Find your instagram user_id ?</a></p>
 <p><a href="http://ibacor.com/demo/jquery-my-instagram-gallery/">DEMO</a></p>
+
+**********************************************************************Thank you********************************************************************************************
